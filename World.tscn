@@ -15,22 +15,22 @@ region_rect = Rect2( 0, 0, 320, 180 )
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Bush" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 160, 116 )
+position = Vector2( 229, 86 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 78, 41 )
+position = Vector2( 119, 55 )
 
 [node name="Bush2" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 190, 68 )
+position = Vector2( 267, 35 )
 
 [node name="Bush3" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 43, 116 )
+position = Vector2( 48, 128 )
 
 [node name="Bush4" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 43, 45 )
+position = Vector2( 62, 49 )
 
 [node name="Bush5" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 92, 154 )
+position = Vector2( 103, 90 )
 
 [node name="Bush6" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 162, 160 )
+position = Vector2( 180, 147 )
