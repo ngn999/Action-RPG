@@ -20,6 +20,8 @@ onready var animationState = animationTree.get("parameters/playback")
 func _ready():
 	animationTree.active = true
 
+# delta is constant,
+# _process(delta), delta in _process() is variable
 func _physics_process(delta):
 	match state:
 		MOVE:
