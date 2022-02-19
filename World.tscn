@@ -529,32 +529,32 @@ position = Vector2( 180, 147 )
 
 [node name="Grass" type="YSort" parent="YSort"]
 
+[node name="Grass2" parent="YSort/Grass" instance=ExtResource( 6 )]
+position = Vector2( 23, 142 )
+
+[node name="Grass3" parent="YSort/Grass" instance=ExtResource( 6 )]
+position = Vector2( 2, 142 )
+
+[node name="Grass4" parent="YSort/Grass" instance=ExtResource( 6 )]
+position = Vector2( 43, 123 )
+
+[node name="Grass5" parent="YSort/Grass" instance=ExtResource( 6 )]
+position = Vector2( 262, 110 )
+
+[node name="Grass6" parent="YSort/Grass" instance=ExtResource( 6 )]
+position = Vector2( 239, 110 )
+
+[node name="Grass7" parent="YSort/Grass" instance=ExtResource( 6 )]
+position = Vector2( 254, 93 )
+
+[node name="Grass8" parent="YSort/Grass" instance=ExtResource( 6 )]
+position = Vector2( 224, 36 )
+
+[node name="Grass9" parent="YSort/Grass" instance=ExtResource( 6 )]
+position = Vector2( 204, 35 )
+
+[node name="Grass10" parent="YSort/Grass" instance=ExtResource( 6 )]
+position = Vector2( 103, 35 )
+
 [node name="Grass" parent="YSort/Grass" instance=ExtResource( 6 )]
 position = Vector2( 42, 142 )
-
-[node name="Grass" parent="YSort/Grass/Grass" instance=ExtResource( 6 )]
-position = Vector2( -19, 0 )
-
-[node name="Grass2" parent="YSort/Grass/Grass" instance=ExtResource( 6 )]
-position = Vector2( -40, 0 )
-
-[node name="Grass3" parent="YSort/Grass/Grass" instance=ExtResource( 6 )]
-position = Vector2( 1, -19 )
-
-[node name="Grass4" parent="YSort/Grass/Grass" instance=ExtResource( 6 )]
-position = Vector2( 220, -32 )
-
-[node name="Grass5" parent="YSort/Grass/Grass" instance=ExtResource( 6 )]
-position = Vector2( 197, -32 )
-
-[node name="Grass6" parent="YSort/Grass/Grass" instance=ExtResource( 6 )]
-position = Vector2( 212, -49 )
-
-[node name="Grass7" parent="YSort/Grass/Grass" instance=ExtResource( 6 )]
-position = Vector2( 182, -106 )
-
-[node name="Grass8" parent="YSort/Grass/Grass" instance=ExtResource( 6 )]
-position = Vector2( 162, -107 )
-
-[node name="Grass9" parent="YSort/Grass/Grass" instance=ExtResource( 6 )]
-position = Vector2( 61, -107 )
