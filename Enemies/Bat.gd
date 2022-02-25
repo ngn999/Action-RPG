@@ -39,7 +39,7 @@ func _physics_process(delta):
 				velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
 			else:
 				state = IDLE
-	sprite.flip_h = velocity.x < 0 # make sure the bat is face to the direction
+			sprite.flip_h = velocity.x < 0 # make sure the bat is face to the direction
 	
 	velocity = move_and_slide(velocity)
 
