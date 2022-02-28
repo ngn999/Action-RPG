@@ -641,8 +641,8 @@ graph_offset = Vector2( -146.355, -75.7274 )
 height = 12.0
 
 [sub_resource type="CapsuleShape2D" id=49]
-radius = 6.0
-height = 8.0
+radius = 7.0
+height = 10.0
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 0, 1 )

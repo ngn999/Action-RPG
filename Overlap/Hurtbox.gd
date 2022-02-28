@@ -29,7 +29,6 @@ func start_invincibility(duration):
 func _on_Timer_timeout():
 	self.invincible = false
 
-
 # make enter_area: repeat
 func _on_Hurtbox_invincibility_ended():
 	set_deferred("monitorable", true)
