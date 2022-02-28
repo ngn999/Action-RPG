@@ -35,6 +35,7 @@ func _physics_process(delta):
 			pass
 			
 		CHASE:
+			# TODO: when it's too close, stop
 			var player = playerDetectionZone.player
 			if player != null:
 				var direction = (player.global_position - global_position).normalized()
