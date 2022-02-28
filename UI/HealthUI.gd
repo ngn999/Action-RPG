@@ -1,19 +1,22 @@
 extends Control
 
-var hearts setget set_hearts
+var hearts = 4 setget set_hearts
 
-var max_hearts setget set_max_hearts
+var max_hearts =4 setget set_max_hearts
 
 onready var playerHeartFull = $PlayerHeartFull
+onready var playerHeartEmpty = $PlayerHeartEmpty
 
 func set_hearts(value):
-	hearts = value
-	hearts = clamp(hearts, 0, max_hearts)
+	hearts = clamp(value, 0, max_hearts)
 	if playerHeartFull != null:
 		playerHeartFull.rect_size.x = hearts * 15
 
 func set_max_hearts(value):
-	max_hearts = value
+	max_hearts = max(1, value)
+	self.hearts = min(max_hearts, hearts)
+	if playerHeartEmpty != null:
+		playerHeartEmpty.rect_size.x = max_hearts * 15
 	
 func _ready():
 	self.max_hearts = PlayerStats.max_health
