@@ -93,7 +93,7 @@ func attack_animation_finished():
 
 
 func _on_Hurtbox_area_entered(area):
-	stats.health -= 1
+	stats.health -= area.damage
 	hurtbox.start_invincibility(1.0)
 	hurtbox.create_hit_effect()
 	var playerHurtSounds = PlayerHurtSounds.instance()
