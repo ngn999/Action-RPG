@@ -24,6 +24,7 @@ onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 onready var swordHitbox = $HitboxPivot/SwordHitbox
 onready var hurtbox = $Hurtbox
+onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 
 func _ready():
 	randomize()
@@ -93,7 +94,15 @@ func attack_animation_finished():
 
 func _on_Hurtbox_area_entered(area):
 	stats.health -= 1
-	hurtbox.start_invincibility(1)
+	hurtbox.start_invincibility(1.0)
 	hurtbox.create_hit_effect()
 	var playerHurtSounds = PlayerHurtSounds.instance()
 	get_tree().current_scene.add_child(playerHurtSounds)
+
+
+func _on_Hurtbox_invincibility_ended():
+	blinkAnimationPlayer.play("Stop")
+
+
+func _on_Hurtbox_invincibility_started():
+	blinkAnimationPlayer.play("Start")
