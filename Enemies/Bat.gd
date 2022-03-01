@@ -12,6 +12,7 @@ const EnemyDeathEffect = preload("res://Enemies/EnemyDeathEffect.tscn")
 export var ACCELERATION = 300
 export var MAX_SPEED = 50
 export var FRICTION = 200
+export var WANDER_TARGET_RANGE = 4
 
 var velocity = Vector2.ZERO
 
@@ -23,6 +24,9 @@ enum {
 
 var state = CHASE
 
+func _ready():
+	state = pick_rand_state([IDLE, WANDER])
+
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, FRICTION * delta)
 	knockback = move_and_slide(knockback)
@@ -32,29 +36,35 @@ func _physics_process(delta):
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 			seek_player()
 			if wanderController.get_time_left() == 0:
-				state = pick_rand_state([IDLE, WANDER])
-				wanderController.start_timer(rand_range(1, 3))
+				update_wander()
 
 		WANDER:
 			seek_player()
 			if wanderController.get_time_left() == 0:
-				state = pick_rand_state([IDLE, WANDER])
-				wanderController.start_timer(rand_range(1, 3))
-			var direction = global_position.direction_to(wanderController.target_position)
-			velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
-			
+				update_wander()
+			accelerate_move_to_position(wanderController.target_position, delta)
+			# if too close stop
+			if global_position.distance_to(wanderController.target_position) <= WANDER_TARGET_RANGE:
+				update_wander()
 		CHASE:
 			# TODO: when it's too close, stop
 			var player = playerDetectionZone.player
 			if player != null:
-				var direction = (player.global_position - global_position).normalized()
-				velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+				accelerate_move_to_position(player.global_position, delta)
 			else:
 				state = IDLE
-			sprite.flip_h = velocity.x < 0 # make sure the bat is face to the direction
 	if softCollision.is_colliding():
 		velocity += softCollision.get_push_vector() * delta * 400
 	velocity = move_and_slide(velocity)
+
+func update_wander():
+	state = pick_rand_state([IDLE, WANDER])
+	wanderController.start_timer(rand_range(1, 3))
+
+func accelerate_move_to_position(point, delta):
+	var direction = global_position.direction_to(point)
+	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+	sprite.flip_h = velocity.x < 0 # make sure the bat's face is toward player
 
 func seek_player():
 	if playerDetectionZone.can_see_player():
