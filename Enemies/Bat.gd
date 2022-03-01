@@ -6,6 +6,7 @@ onready var playerDetectionZone = $PlayerDetectionZone
 onready var sprite = $AnimatedSprite
 onready var hurtbox = $Hurtbox
 onready var softCollision = $SoftCollision
+onready var wanderController = $WanderController
 const EnemyDeathEffect = preload("res://Enemies/EnemyDeathEffect.tscn")
 
 export var ACCELERATION = 300
@@ -30,9 +31,17 @@ func _physics_process(delta):
 		IDLE:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 			seek_player()
-			
+			if wanderController.get_time_left() == 0:
+				state = pick_rand_state([IDLE, WANDER])
+				wanderController.start_timer(rand_range(1, 3))
+
 		WANDER:
-			pass
+			seek_player()
+			if wanderController.get_time_left() == 0:
+				state = pick_rand_state([IDLE, WANDER])
+				wanderController.start_timer(rand_range(1, 3))
+			var direction = global_position.direction_to(wanderController.target_position)
+			velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
 			
 		CHASE:
 			# TODO: when it's too close, stop
@@ -50,6 +59,10 @@ func _physics_process(delta):
 func seek_player():
 	if playerDetectionZone.can_see_player():
 		state = CHASE
+
+func pick_rand_state(states):
+	states.shuffle()
+	return states.pop_front()
 
 func _on_Hurtbox_area_entered(area):
 	stats.health -= area.damage
