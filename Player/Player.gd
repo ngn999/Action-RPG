@@ -9,6 +9,8 @@ const ROLL_SPEED = 120
 var velocity = Vector2.ZERO
 var roll_velocity = Vector2.DOWN
 
+var PlayerHurtSounds = preload("res://Player/PlayerHurtSounds.tscn")
+
 enum {
 	MOVE
 	ROLL
@@ -93,3 +95,5 @@ func _on_Hurtbox_area_entered(area):
 	stats.health -= 1
 	hurtbox.start_invincibility(1)
 	hurtbox.create_hit_effect()
+	var playerHurtSounds = PlayerHurtSounds.instance()
+	get_tree().current_scene.add_child(playerHurtSounds)
